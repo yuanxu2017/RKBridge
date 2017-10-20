@@ -20,13 +20,9 @@ Rokid.prototype.start = function(ip,port,devs,networkEquipment){
 Rokid.prototype.executeCmd = function (args,onBind) {
 
     if(cmdFunc != undefined){
-        if(cmdFunc(args)){
-            onBind(true);
-        }else{
-            onBind(false);
-        }
+        onBind(cmdFunc(args));
     }else {
-        onBind(false);
+        onBind(undefined);
     }
 
 }
