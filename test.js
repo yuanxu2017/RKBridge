@@ -16,8 +16,11 @@ for(let i = 0; i< 3; i++) {
 }
 
 function exeCommand(args) {
-    console.log('test args:',JSON.stringify(args));
-    return true;
+    // console.log('test args:',JSON.stringify(args));
+
+    const s = args.action.name
+    console.log('action:',s);
+    return s === 'on' ? 'off' : 'on';
 }
 
 var main = new ROKID(exeCommand);
