@@ -27,14 +27,12 @@ exports.start = function(PORT, ADDRESS,devs,executeFunc, cb) {
         },
         execute: function(args, callback) {
             const s = args.action.name;
-            // console.log('args:',JSON.stringify(args));
-            console.log('action:',s);
             return new Promise(function(success, failure) {
                 function onBind(result) {
-                    if (result){
-                        console.log('return true')
+                    if (result != undefined){
+                        console.log('return:',result)
                         callback(null, {
-                            switch: s === 'on' ? 'off' : 'on'
+                            switch: result
                         });
                         return success();
                     }else {
@@ -42,13 +40,11 @@ exports.start = function(PORT, ADDRESS,devs,executeFunc, cb) {
                         callback(null, {
                             switch: s
                         });
-                        return failure('err');
+                        return success();
                     }
                 };
                 executeFunc(args,onBind);
             })
-
-
         }
     });
 
